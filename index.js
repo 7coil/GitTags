@@ -42,7 +42,7 @@ client.on('messageCreate', (message) => {
       if (command.startsWith('set')) {
         // If in a server and doesn't have the correct roles, complain
         // Otherwise, or if not in a server, set the configuration
-        if ((message.member && !message.member.roles.includes(eris.Constants.manageGuild)) && !config.owners.includes(message.author.id)) {
+        if ((message.member && !message.member.permission.has('manageGuild')) && !config.owners.includes(message.author.id)) {
           message.channel.createMessage('You don\'t have the "Manage Guild" permission!');
         } else {
           const input = command.substr(3).trim().split(';');
