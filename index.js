@@ -34,8 +34,11 @@ client.on('messageCreate', (message) => {
       repo = row.repo;
     }
 
+    // If the settings prefix is encountered...
     if (message.content.startsWith(settingsPrefix)) {
+      // Get the command the user is trying to get at
       const command = message.content.substr(settingsPrefix.length).trim();
+
       if (command.startsWith('set')) {
         // If in a server and doesn't have the correct roles, complain
         // Otherwise, or if not in a server, set the configuration
@@ -48,15 +51,24 @@ client.on('messageCreate', (message) => {
           db.run(`INSERT OR REPLACE INTO options (channelID, owner, repo) VALUES ('${message.channel.id}', '${encodeURIComponent(owner)}', '${encodeURIComponent(repo)}')`);
           message.channel.createMessage(`**Set Configuration**\nOwner: ${owner}\nRepo: ${repo}`);
         }
+
+      // If the user calls the info command, print out their current configuration
       } else if (command.startsWith('info')) {
         message.channel.createMessage(`**Current Configuration**\nOwner: ${owner}\nRepo: ${repo}`);
       }
+
+    // If the output prefix is encountered
     } else if (message.content.startsWith(outputPrefix)) {
+      // Get the name of the tag
       const query = message.content.substr(outputPrefix.length).trim();
-      if (query.length > 0) {
+
+      // If the tag is actually there, but isn't too long
+      if (query.length > 0 && query.length < 1024) {
+        // Fetch that tag
         fetch(`https://typedgit.bowser65.tk/github/${owner}/${repo}/master/tags/${encodeURIComponent(query)}`)
           .then(data => data.text())
           .then((text) => {
+            // If the text length is too long, tell the user that
             if (text.length <= 2000) {
               message.channel.createMessage(text)
             } else {
