@@ -8,10 +8,12 @@ const fetch = require('node-fetch');
 const client = new eris.Client(token.token);
 const db = new sqlite.Database('db.db');
 
+const prefix = 'git>'
+
 client.on('messageCreate', (message) => {
-  const parts = message.content.split(' ');
-  if (parts[0] === 'git>') {
-    fetch(`https://typedgit.bowser65.tk/github/lepon01/gittag/master/tags/${encodeURIComponent(parts[1])}`)
+  if (message.content.startsWith(prefix)) {
+    const query = message.content.substr(prefix.length).trim();
+    fetch(`https://typedgit.bowser65.tk/github/lepon01/gittag/master/tags/${encodeURIComponent(query)}`)
       .then(data => data.text())
       .then(text => message.channel.createMessage(text));
   }

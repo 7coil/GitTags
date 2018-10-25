@@ -1,0 +1,6 @@
+**GitTags**
+The bot which grabs tags from GitHub!
+
+_Commands_
+`git>help` View this help menu
+`git>set owner;repo` Set the folder which GitTags looks at.
