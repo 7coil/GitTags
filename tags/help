@@ -12,6 +12,11 @@ _You need the "Manage Guild" role to set a repository_
 - `git<set [owner];[repo]`
   - Use the *[owner]/[repo]* repository.
 
+Example: To use `https://github.com/lepon01/gittag` as your repository:
+`git<set lepon01/gittag`
+
+Tags will be taken from the `tags` folder here: `https://github.com/lepon01/gittag/tree/master/tags`
+
 **Info command**
 - `git<info`
   - Get information about where GitTags is currently pointing to
@@ -19,3 +24,4 @@ _You need the "Manage Guild" role to set a repository_
 **Tag command**
 - `git>[tag]`
   - Obtain text with the tag name
+
