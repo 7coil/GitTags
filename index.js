@@ -15,6 +15,9 @@ const outputPrefix = 'git>';
 const defaultOwner = 'lepon01';
 const defaultRepo = 'gittag';
 
+const fetchSettings = db.prepare(`SELECT * FROM options WHERE channelID = (?)`);
+const setSettings = db.prepare(`INSERT OR REPLACE INTO options (channelID, owner, repo) VALUES (?, ?, ?)`)
+
 // Create the Channels Database if it doesn't exist
 db.exec(`CREATE TABLE IF NOT EXISTS options (
   channelID TEXT NOT NULL,
@@ -24,7 +27,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS options (
 )`);
 
 client.on('messageCreate', (message) => {
-  db.get(`SELECT * FROM options WHERE channelID = ('${message.channel.id}')`, (err, row) => {
+  fetchSettings.get(message.channel.id, (err, row) => {
     let owner = defaultOwner;
     let repo = defaultRepo;
 
@@ -45,10 +48,10 @@ client.on('messageCreate', (message) => {
         if ((message.member && !message.member.permission.has('manageGuild')) && !config.owners.includes(message.author.id)) {
           message.channel.createMessage('You don\'t have the "Manage Guild" permission!');
         } else {
-          const input = command.substr(3).trim().split(';');
+          const input = command.substr(3).trim().split(/[;/]/);
           owner = input[0] || defaultOwner;
           repo = input[1] || defaultRepo;
-          db.run(`INSERT OR REPLACE INTO options (channelID, owner, repo) VALUES ('${message.channel.id}', '${encodeURIComponent(owner)}', '${encodeURIComponent(repo)}')`);
+          setSettings.run(message.channel.id, encodeURIComponent(owner), encodeURIComponent(repo));
           message.channel.createMessage(`**Set Configuration**\nOwner: ${owner}\nRepo: ${repo}`);
         }
 

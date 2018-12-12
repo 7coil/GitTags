@@ -9,7 +9,7 @@ _You need the "Manage Guild" role to set a repository_
   - Use the default GitHub repository.
 - `git<set [owner]`
   - Use the *[owner]/gittag* repository.
-- `git<set [owner];[repo]`
+- `git<set [owner]/[repo]`
   - Use the *[owner]/[repo]* repository.
 
 Example: To use <https://github.com/lepon01/gittag> as your repository, run:
