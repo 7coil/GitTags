@@ -25,3 +25,6 @@ Tags will be taken from the `tags` folder here: <https://github.com/lepon01/gitt
 - `git>[tag]`
   - Obtain text with the tag name
 
+**Useful tags in `lepon01/gittag` repository**
+- `lists`
+  - View this bot in bot lists that aren't crap
