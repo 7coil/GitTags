@@ -68,7 +68,7 @@ client.on('messageCreate', (message) => {
       // If the tag is actually there, but isn't too long
       if (query.length > 0 && query.length < 1024) {
         // Fetch that tag
-        fetch(`https://typedgit.bowser65.xyz/github/${owner}/${repo}/master/tags/${encodeURIComponent(query)}`)
+        fetch(`https://raw.githubusercontent.com/${owner}/${repo}/master/tags/${encodeURIComponent(query)}`)
           .then(data => data.text())
           .then((text) => {
             // If the text length is too long, tell the user that
