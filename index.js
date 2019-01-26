@@ -17,9 +17,9 @@ const setSettings = db.prepare('INSERT OR REPLACE INTO options (channelID, owner
  * Handlebars Helpers
  */
 
-Handlebars.registerHelper('for', (n, block) => {
+Handlebars.registerHelper('repeat', (times, block) => {
   let result = '';
-  for (let i = 0; i < n; i += 1) {
+  for (let i = 0; i < times; i += 1) {
     result += block.fn(i);
   }
   return result;
@@ -111,7 +111,9 @@ client.on('messageCreate', (message) => {
           .then(data => data.text())
           .then((text) => {
             const template = Handlebars.compile(text);
-            const result = template();
+            const result = template({
+              author: message.author
+            });
 
             // If the text length is too long, tell the user that
             if (result.length <= 2000) {
