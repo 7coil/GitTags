@@ -2,9 +2,13 @@
   "owners": [
     "190519304972664832"
   ],
-  "prefix": "git",
+  "prefix": {
+    "settings": "git<",
+    "output": "git>"
+  },
   "default": {
     "owner": "lepon01",
     "repo": "gittag"
-  }
+  },
+  "token": ""
 }

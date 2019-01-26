@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "eris": "^0.9.0",
+    "handlebars": "^4.0.12",
+    "handlebars-helpers": "^0.10.0",
     "node-fetch": "^2.2.0",
     "sqlite3": "^4.0.3"
   }
