@@ -58,8 +58,10 @@ client.on('messageCreate', (message) => {
       repo = row.repo;
     }
 
+    // If the author is a bot... do nothing.
+    if (message.author.bot) {
     // If the settings prefix is encountered...
-    if (message.content.startsWith(config.prefix.settings)) {
+    } else if (message.content.startsWith(config.prefix.settings)) {
       // Get the command the user is trying to get at
       const command = message.content.substr(config.prefix.settings.length).trim();
 
