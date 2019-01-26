@@ -24,7 +24,6 @@ Handlebars.registerHelper('for', (n, block) => {
   }
   return result;
 });
-Handlebars.registerHelper('add', (a, b) => a + b);
 Handlebars.registerHelper('timestamp', () => Date.now())
 handlebarsHelpers.array({handlebars: Handlebars});
 handlebarsHelpers.comparison({handlebars: Handlebars});
@@ -36,6 +35,8 @@ handlebarsHelpers.object({handlebars: Handlebars});
 handlebarsHelpers.regex({handlebars: Handlebars});
 handlebarsHelpers.string({handlebars: Handlebars});
 handlebarsHelpers.url({handlebars: Handlebars});
+handlebarsHelpers.date({handlebars: Handlebars});
+handlebarsHelpers.math({handlebars: Handlebars});
 // handlebarsHelpers.utils({handlebars: Handlebars});
 
 // Create the Channels Database if it doesn't exist
@@ -118,6 +119,9 @@ client.on('messageCreate', (message) => {
             } else {
               message.channel.createMessage('_File too long for consumption_');
             }
+          })
+          .catch((err) => {
+            message.channel.createMessage(err.message);
           });
       }
     }
