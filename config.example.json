@@ -1,0 +1,10 @@
+{
+  "owners": [
+    "190519304972664832"
+  ],
+  "prefix": "git",
+  "default": {
+    "owner": "lepon01",
+    "repo": "gittag"
+  }
+}

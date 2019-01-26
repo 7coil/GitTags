@@ -15,8 +15,8 @@ const outputPrefix = 'git>';
 const defaultOwner = 'lepon01';
 const defaultRepo = 'gittag';
 
-const fetchSettings = db.prepare(`SELECT * FROM options WHERE channelID = (?)`);
-const setSettings = db.prepare(`INSERT OR REPLACE INTO options (channelID, owner, repo) VALUES (?, ?, ?)`)
+const fetchSettings = db.prepare('SELECT * FROM options WHERE channelID = (?)');
+const setSettings = db.prepare('INSERT OR REPLACE INTO options (channelID, owner, repo) VALUES (?, ?, ?)')
 
 // Create the Channels Database if it doesn't exist
 db.exec(`CREATE TABLE IF NOT EXISTS options (
