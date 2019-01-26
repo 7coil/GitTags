@@ -48,6 +48,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS options (
 )`);
 
 client.on('messageCreate', (message) => {
+  if (message.author.bot) return;
   fetchSettings.get(message.channel.id, (err, row) => {
     let owner = config.default.owner;
     let repo = config.default.repo;
@@ -59,9 +60,7 @@ client.on('messageCreate', (message) => {
     }
 
     // If the author is a bot... do nothing.
-    if (message.author.bot) {
-    // If the settings prefix is encountered...
-    } else if (message.content.startsWith(config.prefix.settings)) {
+    if (message.content.startsWith(config.prefix.settings)) {
       // Get the command the user is trying to get at
       const command = message.content.substr(config.prefix.settings.length).trim();
 
