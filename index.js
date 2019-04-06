@@ -10,6 +10,14 @@ const config = require('./config.json');
 const client = new eris.Client(config.token);
 const db = new sqlite.Database('db.db');
 
+// Create the Channels Database if it doesn't exist
+db.exec(`CREATE TABLE IF NOT EXISTS options (
+  channelID TEXT NOT NULL,
+  owner TEXT,
+  repo TEXT,
+  PRIMARY KEY(channelID)
+)`);
+
 const fetchSettings = db.prepare('SELECT * FROM options WHERE channelID = (?)');
 const setSettings = db.prepare('INSERT OR REPLACE INTO options (channelID, owner, repo) VALUES (?, ?, ?)')
 
@@ -38,14 +46,6 @@ handlebarsHelpers.url({handlebars: Handlebars});
 handlebarsHelpers.date({handlebars: Handlebars});
 handlebarsHelpers.math({handlebars: Handlebars});
 // handlebarsHelpers.utils({handlebars: Handlebars});
-
-// Create the Channels Database if it doesn't exist
-db.exec(`CREATE TABLE IF NOT EXISTS options (
-  channelID TEXT NOT NULL,
-  owner TEXT,
-  repo TEXT,
-  PRIMARY KEY(channelID)
-)`);
 
 client.on('messageCreate', (message) => {
   if (message.author.bot) return;
