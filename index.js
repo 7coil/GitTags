@@ -118,7 +118,7 @@ client.on('messageCreate', (message) => {
                 id: author.id,
                 bot: author.bot,
                 avatar: author.avatar,
-                avatarURL: avatar.url,
+                avatarURL: author.avatarURL,
                 defaultAvatar: author.defaultAvatar,
                 defaultAvatarURL: author.defaultAvatarURL,
                 discriminator: author.discriminator,
