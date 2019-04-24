@@ -112,8 +112,23 @@ client.on('messageCreate', (message) => {
           .then(data => data.text())
           .then((text) => {
             const template = Handlebars.compile(text);
+            const author = message.author;
             const result = template({
-              author: message.author
+              author: {
+                id: author.id,
+                bot: author.bot,
+                avatar: author.avatar,
+                avatarURL: avatar.url,
+                defaultAvatar: author.defaultAvatar,
+                defaultAvatarURL: author.defaultAvatarURL,
+                discriminator: author.discriminator,
+                staticAvatarURL: author.staticAvatarURL,
+                username: author.username,
+                mention: author.mention,
+                _client: {
+                  token: 'Gay Baby Jail'
+                }
+              }
             });
 
             // If the text length is too long, tell the user that
