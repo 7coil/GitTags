@@ -135,11 +135,19 @@ client.on('messageCreate', (message) => {
               dayRandom: dayRandom()
             });
 
-            // If the text length is too long, tell the user that
-            if (result.length <= 2000) {
-              message.channel.createMessage(result)
-            } else {
-              message.channel.createMessage('_File too long for consumption_');
+            let messageContent = message.channel.createMessage(result);
+
+            try {
+              // Try to parse the data for objects
+              messageContent = JSON.parse(result);
+            } finally {
+              // Send the message
+              message.channel.createMessage(messageContent)
+                .catch((e) => {
+                  // Send the error that occured while trying to send the message
+                  message.channel.createMessage(e.message)
+                    .catch(() => {})
+                })
             }
           })
           .catch((err) => {
