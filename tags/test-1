@@ -1,0 +1,5 @@
+Today's `COTD Of The Day` is **{{ itemAt (split "Colour,Cute,Cat" ",") (floor (multiply dayRandom 3)) }} Of The Day**
+Come back tomorrow for more `cotd`.
+
+---
+Last updated: {{moment "today" "YYYY-MM-DD"}}
