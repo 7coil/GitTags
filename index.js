@@ -4,6 +4,7 @@ const handlebarsHelpers = require('handlebars-helpers');
 const sqlite = require('sqlite3').verbose();
 const eris = require('eris');
 const fetch = require('node-fetch');
+const seedrandom = require('seedrandom');
 
 const config = require('./config.json');
 
@@ -113,6 +114,8 @@ client.on('messageCreate', (message) => {
           .then((text) => {
             const template = Handlebars.compile(text);
             const author = message.author;
+            const dayRandom = seedrandom(config.random + (new Date()).toISOString().split('T')[0]);
+            
             const result = template({
               author: {
                 id: author.id,
@@ -128,7 +131,8 @@ client.on('messageCreate', (message) => {
                 _client: {
                   token: 'Gay Baby Jail'
                 }
-              }
+              },
+              dayRandom: dayRandom()
             });
 
             // If the text length is too long, tell the user that

@@ -13,6 +13,7 @@
     "handlebars": "^4.0.12",
     "handlebars-helpers": "^0.10.0",
     "node-fetch": "^2.2.0",
+    "seedrandom": "^3.0.1",
     "sqlite3": "^4.0.3"
   }
 }
