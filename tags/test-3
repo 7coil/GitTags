@@ -1,0 +1,10 @@
+{
+  "embed": {
+    "title": "Todays COTD of the Day is...",
+    "description": "**{{ itemAt (split "Colour,Cute,Cat,COTD" ",") (floor (multiply dayRandom 4)) }} Of The Day**!",
+    "timestamp": "{{moment "end of today" "YYYY-MM-DDTHH:mm:ssZ"}}",
+    "footer": {
+      "text": "Next COTD will be revealed"
+    }
+  }
+}
