@@ -140,6 +140,8 @@ client.on('messageCreate', (message) => {
             try {
               // Try to parse the data for objects
               messageContent = JSON.parse(result);
+            } catch(e) {
+              // Nothing!
             } finally {
               // Send the message
               message.channel.createMessage(messageContent)
