@@ -135,7 +135,7 @@ client.on('messageCreate', (message) => {
               dayRandom: dayRandom()
             });
 
-            let messageContent = message.channel.createMessage(result);
+            let messageContent = result;
 
             try {
               // Try to parse the data for objects
