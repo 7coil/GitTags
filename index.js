@@ -75,12 +75,14 @@ client.on('messageCreate', (message) => {
           owner = input[0] || config.default.owner;
           repo = input[1] || config.default.repo;
           setSettings.run(message.channel.id, encodeURIComponent(owner), encodeURIComponent(repo));
-          message.channel.createMessage(`**Set Configuration**\nOwner: ${owner}\nRepo: ${repo}`);
+          message.channel.createMessage(`**GitTags Repository Set!**\nhttps://github.com/${owner}/${repo}`);
         }
 
       // If the user calls the info command, print out their current configuration
       } else if (command.startsWith('info')) {
-        message.channel.createMessage(`**Current Configuration**\nOwner: ${owner}\nRepo: ${repo}`);
+        message.channel.createMessage(`**Current Configuration**\nhttps://github.com/${owner}/${repo}`);
+      } else if (command.startsWith('help')) {
+        message.channel.createMessage(`Please run \`${config.prefix.output}help\` instead of \`${config.prefix.settings}\`help - The help menu is a tag.`);
       }
 
     // If the output prefix is encountered
@@ -91,25 +93,7 @@ client.on('messageCreate', (message) => {
       // If the tag is actually there, but isn't too long
       if (query.length > 0 && query.length < 1024) {
         // Fetch that tag
-        fetch(`https://raw.githubusercontent.com/${owner}/${repo}/master/tags/${encodeURIComponent(query)}.handlebars`)
-          .then((response) => {
-            // If the ".handlebars" fetch was OK, carry on
-            if (response.ok) {
-              return response;
-            } else {
-              // Otherwise, fetch one with ".hbs"
-              return fetch(`https://raw.githubusercontent.com/${owner}/${repo}/master/tags/${encodeURIComponent(query)}.hbs`)
-            }
-          })
-          .then((response) => {
-            // If the ".hbs" fetch was OK, carry on
-            if (response.ok) {
-              return response;
-            } else {
-              // Otherwise, fetch one without handlebars
-              return fetch(`https://raw.githubusercontent.com/${owner}/${repo}/master/tags/${encodeURIComponent(query)}`)
-            }
-          })
+        fetch(`https://raw.githubusercontent.com/${owner}/${repo}/master/tags/${encodeURIComponent(query)}`)
           .then(data => data.text())
           .then((text) => {
             const template = Handlebars.compile(text);
@@ -150,6 +134,12 @@ client.on('messageCreate', (message) => {
                   message.channel.createMessage(e.message)
                     .catch(() => {})
                 })
+
+              // If it was a handlebars file, tell the user that it has been removed
+              if (/.(hbs|handlebars)$/.test(query)) {
+                message.channel.createMessage('The `.hbs` and `.handlebars` extensions are no longer permitted in file names. Files without these extensions will still be processed by the handlebars engine.')
+                  .catch(() => {})
+              }
             }
           })
           .catch((err) => {
