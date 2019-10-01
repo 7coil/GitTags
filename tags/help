@@ -25,10 +25,10 @@ _You need the "Manage Guild" role to set a repository_
 - `git<set [owner];[repo]`
   - Use the *[owner]/[repo]* repository.
 
-Example: To use https://github.com/lepon01/gittag as your repository, run:
+Example: To use <https://github.com/lepon01/gittag> as your repository, run:
 `git<set lepon01/gittag`
 
-Tags will be taken from the `tags` folder here: https://github.com/lepon01/gittag/tree/master/tags
+Tags will be taken from the `tags` folder here: <https://github.com/lepon01/gittag/tree/master/tags>
 
 ### Info
 - `git<info`
