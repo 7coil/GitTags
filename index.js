@@ -134,12 +134,6 @@ client.on('messageCreate', (message) => {
                   message.channel.createMessage(e.message)
                     .catch(() => {})
                 })
-
-              // If it was a handlebars file, tell the user that it has been removed
-              if (/.(hbs|handlebars)$/.test(query)) {
-                message.channel.createMessage('The `.hbs` and `.handlebars` extensions are no longer permitted in file names. Files without these extensions will still be processed by the handlebars engine.')
-                  .catch(() => {})
-              }
             }
           })
           .catch((err) => {
