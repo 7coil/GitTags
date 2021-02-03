@@ -195,7 +195,7 @@ client.on("messageCreate", async (message) => {
           sendMessage(text, message, {
             owner,
             repo,
-            command,
+            command: query,
             isSettingsPrefix,
             isOutputPrefix,
           })
