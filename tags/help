@@ -1,4 +1,22 @@
-**Welcome!**
-Get started with GitTags on-line!
-
-https://leondrolio.com/projects/gittags/
+{
+  "embed": {
+    "title": "GitTags",
+    "description": "Welcome to GitTags, a project which allows you to create tags for Discord, with GitHub as your data store.",
+    "url": "https://leondrolio.com/project/gittags",
+    "fields": [
+      {
+        "name": "Setting a GitHub Repository",
+        "value": "Run the command `git<set https://github.com/7coil/gittags` to set the repository to the user _7coil_ and the repository _gittags_\n\nNote that the **master** branch is used, and that this currently can not be changed at this moment in time"
+      },
+      {
+        "name": "Getting tags",
+        "value": "With the command `git>[tagname]`, you can grab the contents of any file located in your `tags/` folder of your GitHub repository.\n\nWe _recommend_ that you add a `help` file to your repository to help users trying to use your bot. Also note that you are using `git>` (user prefix) instead of `git<` (admin prefix)"
+      },
+      {
+        "name": "Fetch Configuration",
+        "value": "You're currently linked up to https://github.com/{{owner}}/{{repo}}",
+        "inline": true
+      }
+    ]
+  }
+}

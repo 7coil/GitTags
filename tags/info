@@ -1,0 +1,7 @@
+{
+  "embed": {
+    "title": "GitTags",
+    "description": "You're currently linked up to https://github.com/{{owner}}/{{repo}}",
+    "url": "https://leondrolio.com/project/gittags"
+  }
+}
