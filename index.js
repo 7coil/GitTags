@@ -75,8 +75,6 @@ const fetchById = (id) =>
 
 const sendMessage = (text, erisMessage, extraInfo = {}) =>
   new Promise((resolve, reject) => {
-    console.log(extraInfo);
-
     const template = Handlebars.compile(text);
     const author = erisMessage.author;
     const dayRandom = seedrandom(
@@ -149,8 +147,6 @@ client.on("messageCreate", async (message) => {
         const input = command.substr(3).trim().split(/[;/]$/);
         let [newOwner, newRepo] = input;
 
-        console.log(input)
-
         if (!newOwner) newOwner = config.default.owner;
         if (!newRepo) newRepo = config.default.repo;
 
@@ -167,8 +163,6 @@ client.on("messageCreate", async (message) => {
       // If the user calls the info command, print out their current configuration
     } else {
       const fileLocation = path.resolve("./tags", encodeURIComponent(command));
-
-      console.log(fileLocation);
 
       if (!fileLocation.startsWith(path.resolve("./tags"))) return;
       if (!fs.existsSync(fileLocation)) return;
