@@ -2,7 +2,7 @@ To update DiscordForOffice:
 
 1. Remove previous versions from the Control Panel
 2. Remove references to `office.terminal.ink` from Internet Options "approved" sites
-3. Download the latest 32-bit version, unless you use 64-bit Microsoft office
+3. Download the latest version.
 
 https://github.com/7coil/DiscordForOffice/releases
 
